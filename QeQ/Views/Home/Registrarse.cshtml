@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Registrarse";
+}
+
+<h2 style="color: gold">Registrarse</h2>
+<h3 style="color: gold">Registrarte te trae beneficios! Guardar tus puntos, tus InfoCoins y te damos de regalo la hermosa cantidad de 10.000 InfoCoins</h3>
+
+
+<form action="@Url.Action("Registrar", "Home")" method="post">
+    <label style="color: gold">E-Mail</label> <br />
+    <input type="text" name="Email" /> <br />
+    <label style="color: gold">Password</label><br />
+    <input type="password" name="Password" /> <br />
+
+    <label style="color: gold">Nombre de usuario</label><br />
+    <input type="NombreDeUsuario" name="NombreDeUsuario" /><br />
+
+
+    <input type="submit" name="enviar" value="Enviar" />
+</form>

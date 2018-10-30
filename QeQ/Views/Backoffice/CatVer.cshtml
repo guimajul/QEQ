@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "CatVer";
+}
+<link href="~/Content/IndexCss.css" rel="stylesheet" />
+
+<form action="@Url.Action("ABMLCategorias", "BackofficeController")" method="post">
+
+    <label style="color: gold">ID de Categoria</label> <br />
+    <input type="text" name="Id" /> <br />
+
+    <input type="submit" name="enviar" value="Enviar" />
+</form>
+
