@@ -1,14 +1,16 @@
-﻿
+﻿@using QeQ.Models
+@model Usuario
 @{
     ViewBag.Title = "Login";
 }
 
 <h2 style="color: gold">Login</h2>
+<h3 style="color: yellow">@ViewBag.MensajeError</h3>
 
 <form action="@Url.Action("RedirectLogin", "Home")" method="post">
     <label style="color: gold">E-Mail</label><br />
-    <input type="text" name="Email" /><br />
+    @Html.TextBoxFor(x => x.EMail) @Html.ValidationMessageFor(x => x.EMail)
     <label style="color: gold">Password</label><br />
-    <input type="password" name="Password" /><br />
+    @Html.PasswordFor(x => x.Contraseña) @Html.ValidationMessageFor(x => x.Contraseña)
     <input type="submit" name="enviar" value="Enviar" /><br />
 </form>

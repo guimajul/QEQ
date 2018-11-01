@@ -37,14 +37,15 @@ namespace QeQ.Controllers
 
             }
 
-
-
             return View();
         }
         public ActionResult ABMLPersonajes()
         {
             return View();
         }
-
+        public ActionResult Ver(string Tabla)
+        {
+            return View();
+        }
     }
 }

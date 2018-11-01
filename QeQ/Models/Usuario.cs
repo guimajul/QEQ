@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace QeQ.Models
 {
@@ -9,6 +11,7 @@ namespace QeQ.Models
     {
         private string mail;
 
+        [Required(ErrorMessage = "Es obligatorio escribir el  mail")]
         public string EMail
         {
             get { return mail; }
@@ -17,6 +20,8 @@ namespace QeQ.Models
 
         private string contra;
 
+        [Required(ErrorMessage = "Es obligatorio escribir la contraseña")]
+        [StringLength(maximumLength:15,MinimumLength =3,ErrorMessage ="La contraseña debe tener entre 3 y 15")]
         public string Contraseña
         {
             get { return contra; }

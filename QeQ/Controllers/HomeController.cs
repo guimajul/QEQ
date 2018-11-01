@@ -40,25 +40,36 @@ namespace QeQ.Controllers
 
 
         }
-        public ActionResult RedirectLogin(string Email, string Password)
+        [HttpPost]
+        public ActionResult RedirectLogin(Usuario x)
         {
-
-            Usuario User = new Usuario();
-            User.NomUs = "";
-            User = BDD.ExisteUsuario(Email, Password);
-            ViewBag.NomUs = User.NomUs;
-            if (User.adm == true)
+            if (ModelState.IsValid)
             {
-                return View("ADM");
-            }
-            if (User.NomUs != null)
-            {
-                ViewBag.NombreUsuario = User.NomUs;
-                return View("Ingreso");
+                Usuario User = new Usuario();
+                User.NomUs = "";
+                User = BDD.ExisteUsuario(x.EMail, x.Contraseña);
+                ViewBag.NomUs = User.NomUs;
+                if (User.EMail != null)
+                {
+                    if (User.adm == true)
+                    {
+                        return View("ADM");
+                    }
+                    else
+                    {
+                        ViewBag.NombreUsuario = User.NomUs;
+                        return View("Ingreso");
+                    }
+                }
+                else
+                {
+                    ViewBag.MensajeError = "El usuario no existe en la base de datos";
+                    return View("Login",x);
+                }
             }
             else
             {
-                return View("Login");
+                return View("Login",x);
             }
         }
 
