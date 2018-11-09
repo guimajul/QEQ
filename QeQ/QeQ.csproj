@@ -88,8 +88,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\fodno web.jpg" />
     <Content Include="Content\FOTO JUEGO incognita.png" />
     <Content Include="Content\IndexCss.css" />
@@ -138,8 +138,6 @@
     <Content Include="Views\Home\Ingreso.cshtml" />
     <Content Include="Views\Home\BienvenidaRegistrarse.cshtml" />
     <Content Include="Views\Backoffice\CatModif.cshtml" />
-    <Content Include="Views\Backoffice\CatElim.cshtml" />
-    <Content Include="Views\Backoffice\CatVer.cshtml" />
     <Content Include="Views\Backoffice\CatAdd.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

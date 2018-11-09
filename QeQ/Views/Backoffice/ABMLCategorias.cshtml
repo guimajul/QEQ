@@ -1,9 +1,28 @@
-﻿
+﻿@using QeQ.Models;
 @{
     ViewBag.Title = "ABMLCategorias";
 }
 
-<h3><a href="@Url.Action("ABMLCategorias","Backoffice",new { accion="modif" })">Modificar Categoria</a></h3>
-<h3><a href="@Url.Action("ABMLCategorias","Backoffice",new { accion="elim" })">Eliminar Categoria</a></h3>
-<h3><a href="@Url.Action("ABMLCategorias","Backoffice",new { accion="ver" })">Ver Categorias</a></h3>
+
 <h3><a href="@Url.Action("ABMLCategorias","Backoffice",new { accion="add" })">Agregar Categoria</a></h3>
+
+
+
+           <table>
+               <tr>
+                   <th> nombre </th>
+                   <th> modificar </th>
+                   <th> eliminar </th>
+               </tr>
+               @{
+
+                   foreach (Categoria categoria in ViewBag.ListasCategorias)
+                   {
+                       <tr>
+                           <td> @categoria.cat </td>
+                           <td> <a href="@Url.Action("ABMLCategorias","Backoffice",new { accion="modif", id = categoria.IdCategoria })">Modificar </a> </td>
+                           <td> <a href="@Url.Action("ABMLCategorias","Backoffice",new { accion="elim", id = categoria.IdCategoria  })">Eliminar </a> </td>
+                       </tr>
+                   }
+               }
+           </table>

@@ -23,7 +23,7 @@ namespace QeQ.Models
 
         public static Usuario ExisteUsuario(string EMail, string Contraseña)
         {
-            
+
             //string Devuelve = "";
             SqlConnection Conexión = Conectar();
             SqlCommand Consulta = Conexión.CreateCommand();
@@ -31,14 +31,14 @@ namespace QeQ.Models
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
             Consulta.Parameters.AddWithValue("@Mail", EMail);
             Consulta.Parameters.AddWithValue("@Contraseña", Contraseña);
-            
+
 
             var dataReader = Consulta.ExecuteReader();
             Usuario User = new Usuario();
             if (dataReader.Read())
             {
                 User.EMail = dataReader["Mail"].ToString();
-               
+
                 User.NomUs = dataReader["NombreDeUsuario"].ToString();
                 User.Contraseña = dataReader["Contraseña"].ToString();
                 User.adm = Convert.ToBoolean(dataReader["Administrador"]);
@@ -47,7 +47,7 @@ namespace QeQ.Models
             return User;
         }
 
-        public static bool CrearUsuario (string EMail, string Contraseña, string NombreDeUsuario)
+        public static bool CrearUsuario(string EMail, string Contraseña, string NombreDeUsuario)
         {
             bool a = false;
             SqlConnection Conexión = Conectar();
@@ -65,9 +65,38 @@ namespace QeQ.Models
             }
             return a;
         }
+        public static List<Categoria> ListarCategorias()
+        {
+            List<Categoria> ListaCategorias = new List<Categoria>();
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "TraerCategoria";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            while (dataReader.Read())
+            {
+
+                int id = Convert.ToInt32(dataReader["IdCategoria"]);
+                string NomCat = dataReader["Categoria"].ToString();
+
+
+                Categoria categ = new Categoria(id, NomCat);
+                ListaCategorias.Add(categ);
+
+
+            }
+            Desconectar(conexion);
+            return ListaCategorias;
+
+        }
+
+
+
+
         public static string VerCategoria(int IdCategoria)
         {
-            string Cat= "";
+            string Cat = "";
 
 
             SqlConnection Conexión = Conectar();
@@ -79,12 +108,29 @@ namespace QeQ.Models
             if (DataReader.Read())
             {
                 int IdCat = Convert.ToInt32(DataReader["IdCategoria"]);
-                 Cat = DataReader["Categoria"].ToString();
+                Cat = DataReader["Categoria"].ToString();
             }
             Desconectar(Conexión);
             return Cat;
         }
 
+
+        public static bool CrearCategoria(string Categoria)
+        {
+            bool a = false;
+            SqlConnection Conexión = Conectar();
+            SqlCommand Consulta = Conexión.CreateCommand();
+            Consulta.CommandText = "CrearCategoria";
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.Parameters.AddWithValue("@Categoria", Categoria);
+            int regsAfectados = Consulta.ExecuteNonQuery();
+            Desconectar(Conexión);
+            if (regsAfectados == 1)
+            {
+                a = true;
+            }
+            return a;
+        }
 
 
     }

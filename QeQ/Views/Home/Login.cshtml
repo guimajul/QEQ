@@ -4,13 +4,13 @@
     ViewBag.Title = "Login";
 }
 
-<h2 style="color: gold">Login</h2>
-<h3 style="color: yellow">@ViewBag.MensajeError</h3>
+<h2 style="color: black">Login</h2>
+<h3 style="color: black">@ViewBag.MensajeError</h3>
 
 <form action="@Url.Action("RedirectLogin", "Home")" method="post">
-    <label style="color: gold">E-Mail</label><br />
+    <label style="color: black">E-Mail</label>
     @Html.TextBoxFor(x => x.EMail) @Html.ValidationMessageFor(x => x.EMail)
-    <label style="color: gold">Password</label><br />
+    <label style="color: black">Password</label>
     @Html.PasswordFor(x => x.Contraseña) @Html.ValidationMessageFor(x => x.Contraseña)
-    <input type="submit" name="enviar" value="Enviar" /><br />
+    <input type="submit" name="enviar" value="Enviar" />
 </form>

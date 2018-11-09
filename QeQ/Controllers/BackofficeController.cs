@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using QeQ.Models;
+
 
 namespace QeQ.Controllers
 {
@@ -18,34 +20,39 @@ namespace QeQ.Controllers
         {
             return View();
         }
-        public ActionResult ABMLCategorias(string accion)
+
+
+        public ActionResult ABMLCategorias(string accion, int id = -1)
+
         {
-            switch(accion)
+            ViewBag.ListasCategorias = BDD.ListarCategorias();
+            switch (accion)
             {
                 case "modif":
                     return View("CatModif");
-                    
+
                 case "elim":
-                    return View("CatElim");
-                    
-                case "ver":
-                    return View("CatVer");
-                    
+                    break;
+
                 case "add":
+
                     return View("CatAdd");
-                    
 
             }
-
+            
             return View();
         }
         public ActionResult ABMLPersonajes()
         {
             return View();
         }
-        public ActionResult Ver(string Tabla)
+        
+        public ActionResult AgregarCat(string Categoria)
         {
-            return View();
+            BDD.CrearCategoria(Categoria);
+            ViewBag.ListasCategorias = BDD.ListarCategorias();
+            return View("ABMLCategorias");
         }
+   
     }
 }

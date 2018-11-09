@@ -3,5 +3,11 @@
     ViewBag.Title = "CatAdd";
 }
 
-<h2>CatAdd</h2>
+<h2 style="color: black">CatAdd</h2>
+
+<form action="@Url.Action("AgregarCat", "Backoffice")" method="post">
+<label style="color: black">Ingrese nueva categoria</label>
+<input type="text" name="Categoria" /> <br />
+<input type="submit" name="enviar" value="Enviar" />
+</form>
 
