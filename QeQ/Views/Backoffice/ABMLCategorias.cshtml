@@ -1,6 +1,11 @@
 ﻿@using QeQ.Models;
+
 @{
-    ViewBag.Title = "ABMLCategorias";
+    if(ViewBag.Mensaje != "")
+    {
+        <h2 style="color:black"> @ViewBag.Mensaje </h2>
+    }
+   
 }
 
 

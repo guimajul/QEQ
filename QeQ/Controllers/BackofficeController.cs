@@ -21,21 +21,27 @@ namespace QeQ.Controllers
             return View();
         }
 
-
-        public ActionResult ABMLCategorias(string accion, int id = -1)
-
+        public ActionResult ListaCategorias(bool a = true)
         {
             ViewBag.ListasCategorias = BDD.ListarCategorias();
+            ViewBag.Mensaje = "";
+            if (a == false)
+            {
+                ViewBag.Mensaje = "No se puede borrar ya que hay datos asociados, primero debes borrarlos, Je!";
+            }
+            return View("ABMLCategorias");
+        }
+
+        public ActionResult ABMLCategorias(string accion , int id = -1)
+        {
             switch (accion)
             {
                 case "modif":
                     return View("CatModif");
-
                 case "elim":
-                    break;
-
+                    bool afectados = BDD.EliminarCategoria(id);
+                    return RedirectToAction("ListaCategorias", "Backoffice", new { a = afectados });
                 case "add":
-
                     return View("CatAdd");
 
             }
@@ -50,8 +56,7 @@ namespace QeQ.Controllers
         public ActionResult AgregarCat(string Categoria)
         {
             BDD.CrearCategoria(Categoria);
-            ViewBag.ListasCategorias = BDD.ListarCategorias();
-            return View("ABMLCategorias");
+            return RedirectToAction("ListaCategorias", "Backoffice");
         }
    
     }

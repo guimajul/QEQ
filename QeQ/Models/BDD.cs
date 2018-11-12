@@ -133,5 +133,23 @@ namespace QeQ.Models
         }
 
 
+
+
+        public static bool EliminarCategoria(int IdCategoria)
+        {
+            bool a = false;
+            SqlConnection Conexión = Conectar();
+            SqlCommand Consulta = Conexión.CreateCommand();
+            Consulta.CommandText = "EliminarCategoria";
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.Parameters.AddWithValue("@IdCategoria", IdCategoria);
+            int regsAfectados = Consulta.ExecuteNonQuery();
+            Desconectar(Conexión);
+            if (regsAfectados == 0)
+            {
+                a = false;
+            }
+            return a;
+        }
     }
 }
