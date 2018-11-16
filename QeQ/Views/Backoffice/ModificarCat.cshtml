@@ -1,0 +1,15 @@
+﻿@using QeQ.Models
+@model Categoria
+@{
+    ViewBag.Title = "CatModif";
+}
+
+<h2 style="color: black">CatModif</h2>
+
+<form action="@Url.Action("EditarCat", "Backoffice")" method="post">
+    <label style="color: black">Ingrese nuevo nombre para la categoria</label>
+    @Html.TextBoxFor(x=>x.cat)
+    @Html.HiddenFor(x=>x.IdCategoria)
+    <input type="submit" name="enviar" value="Enviar" />
+</form>
+

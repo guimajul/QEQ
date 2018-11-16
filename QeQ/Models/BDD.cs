@@ -65,6 +65,8 @@ namespace QeQ.Models
             }
             return a;
         }
+
+        //-------------------------------------------------------------------------------------------------------------
         public static List<Categoria> ListarCategorias()
         {
             List<Categoria> ListaCategorias = new List<Categoria>();
@@ -94,26 +96,26 @@ namespace QeQ.Models
 
 
 
-        public static string VerCategoria(int IdCategoria)
-        {
-            string Cat = "";
+      
 
+        public static Categoria TraerCategoria(int IdCategoria)
+        {
+            Categoria Cat = new Categoria();
 
             SqlConnection Conexión = Conectar();
             SqlCommand Consulta = Conexión.CreateCommand();
-            Consulta.CommandText = "VerCategoria";
+            Consulta.CommandText = "VerCategorias";
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            Consulta.Parameters.AddWithValue("@pIdCategoria", IdCategoria);
+            Consulta.Parameters.AddWithValue("@IdCategoria", IdCategoria);
             SqlDataReader DataReader = Consulta.ExecuteReader();
             if (DataReader.Read())
             {
-                int IdCat = Convert.ToInt32(DataReader["IdCategoria"]);
-                Cat = DataReader["Categoria"].ToString();
+                Cat.IdCategoria = Convert.ToInt32(DataReader["IdCategoria"]);
+                Cat.cat = DataReader["Categoria"].ToString();
             }
             Desconectar(Conexión);
             return Cat;
         }
-
 
         public static bool CrearCategoria(string Categoria)
         {
@@ -151,5 +153,99 @@ namespace QeQ.Models
             }
             return a;
         }
+
+        public static void ModificarCategoria(int IdCategoria ,string categoria)
+        {
+            SqlConnection Conexión = Conectar();
+            SqlCommand Consulta = Conexión.CreateCommand();
+            Consulta.CommandText = "ModificarCategoria";
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.Parameters.AddWithValue("@IdCategoria", IdCategoria);
+            Consulta.Parameters.AddWithValue("@Categoria", categoria);
+            Consulta.ExecuteNonQuery();
+            Desconectar(Conexión);
+        }
+
+        //---------------------------------------------------------------------------------------------------------
+
+        public static List<Personajes> ListarPersonajes()
+        {
+            
+            List<Personajes> ListaPersonajes = new List<Personajes>();
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "TraerPersonajes";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            while (dataReader.Read())
+            {
+                Personajes Perso = new Personajes();
+                Perso.idPerso = Convert.ToInt32(dataReader["idPersonaje"]);
+                Perso.Nom = dataReader["Nombre"].ToString();
+                Perso.Cat = Convert.ToInt32(dataReader["Categoria"]);
+                ListaPersonajes.Add(Perso);
+
+
+            }
+            Desconectar(conexion);
+            return ListaPersonajes;
+
+        }
+
+        public static bool CrearPersonaje(string nombre, int idcateg )
+        {
+            bool a = false;
+            SqlConnection Conexión = Conectar();
+            SqlCommand Consulta = Conexión.CreateCommand();
+            Consulta.CommandText = "CrearPersonaje";
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.Parameters.AddWithValue("@Nombre", nombre);
+            Consulta.Parameters.AddWithValue("@Categoria", idcateg);
+            int regsAfectados = Consulta.ExecuteNonQuery();
+            Desconectar(Conexión);
+            if (regsAfectados == 1)
+            {
+                a = true;
+            }
+            return a;
+        }
+
+
+
+        public static bool EliminarPersonaje(int IdPerso)
+        {
+            bool a = false;
+            SqlConnection Conexión = Conectar();
+            SqlCommand Consulta = Conexión.CreateCommand();
+            Consulta.CommandText = "EliminarPersonaje";
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.Parameters.AddWithValue("@IdPersonaje", IdPerso);
+            int regsAfectados = Consulta.ExecuteNonQuery();
+            Desconectar(Conexión);
+            if (regsAfectados == 0)
+            {
+                a = false;
+            }
+            return a;
+        }
+
+        public static void ModificarPersonaje(int IdPersonaje, string Nombre, int Categoria)
+        {
+            SqlConnection Conexión = Conectar();
+            SqlCommand Consulta = Conexión.CreateCommand();
+            Consulta.CommandText = "ModificarPersonaje";
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.Parameters.AddWithValue("@IdPersonaje", IdPersonaje);
+            Consulta.Parameters.AddWithValue("@Nombre", Nombre);
+            Consulta.Parameters.AddWithValue("@Categoria", Categoria);
+            Consulta.ExecuteNonQuery();
+            Desconectar(Conexión);
+        }
+
+
+
+
+
     }
 }

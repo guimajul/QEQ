@@ -23,8 +23,15 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav"></ul>
-                @Html.ActionLink("Login", "Login", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Registrarse", "Registrarse", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @if (Session["NomUs"] != null)
+                {
+                    @Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                }
+                else
+                {
+                    @Html.ActionLink("Login", "Login", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Registrarse", "Registrarse", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                }
             </div>
         </div>
     </div>

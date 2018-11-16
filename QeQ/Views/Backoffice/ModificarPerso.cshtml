@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "PersoModif";
+}
+
+<h2 style="color: black">CatModif</h2>
+
+<form action="@Url.Action("EditarPerso", "Backoffice")" method="post">
+    <label style="color: black">Ingrese nuevo nombre para el personaje</label>
+    <input type="text" name="PersoModificado" /> <br />
+    <label style="color: black">Ingrese nueva categoria para el personaje</label>
+    <input type="text" name="CategModificada" /> <br />
+    <input type="hidden" name="idPerso" value="@ViewBag.id" /> <br />
+    <input type="submit" name="enviar" value="Enviar" />
+</form>
+

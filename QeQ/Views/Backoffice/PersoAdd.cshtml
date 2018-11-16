@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "PersoAdd";
+}
+
+<h2 style="color: black">PersoAdd</h2>
+
+<form action="@Url.Action("AgregarPerso", "Backoffice")" method="post">
+    <label style="color: black">Ingrese un nuevo personaje</label>
+    <input type="text" name="Personaje" /> <br />
+    <label style="color: black">Ingrese una categoria para ese personaje</label>
+    <input type="text" name="Categoria" /> <br />
+
+    <input type="submit" name="enviar" value="Enviar" />
+</form>
+
+

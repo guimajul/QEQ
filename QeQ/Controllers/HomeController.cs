@@ -31,6 +31,12 @@ namespace QeQ.Controllers
 
             return View();
         }
+        public ActionResult Logout()
+        {
+            Session["NomUs"] = null;
+            Session["ADM"] = null;
+            return View("Index");
+        }
         public ActionResult Registrarse()
         {
             //Usuario us = new Usuario()
@@ -51,6 +57,8 @@ namespace QeQ.Controllers
                 ViewBag.NomUs = User.NomUs;
                 if (User.EMail != null)
                 {
+                    Session["NomUs"] = User.NomUs;
+                    Session["ADM"] = User.adm;
                     if (User.adm == true)
                     {
                         return View("ADM");

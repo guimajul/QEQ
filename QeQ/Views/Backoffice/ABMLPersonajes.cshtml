@@ -1,7 +1,35 @@
-﻿
+﻿@using QeQ.Models
+
 @{
-    ViewBag.Title = "ABMLPersonajes";
+    if (ViewBag.Mensaje != "")
+    {
+        <h2 style="color:black"> @ViewBag.Mensaje </h2>
+    }
+
 }
 
-<h2>ABMLPersonajes</h2>
 
+<h3><a href="@Url.Action("ABMLPersonajes","Backoffice",new { accion="add" })">Agregar Personaje</a></h3>
+
+
+
+<table>
+    <tr>
+        <th> Nombre </th>
+        <th> IdCat </th>
+        <th> Modificar </th>
+        <th> Eliminar </th>
+    </tr>
+    @{
+
+        foreach (Personajes personajes in ViewBag.ListasPersonajes)
+        {
+    <tr>
+        <td> @personajes.Nom </td>
+        <td> @personajes.Cat </td>
+        <td> <a href="@Url.Action("ABMLPersonajes","Backoffice",new { accion="modif", id = personajes.idPerso })">Modificar </a> </td>
+        <td> <a href="@Url.Action("ABMLPersonajes","Backoffice",new { accion="elim", id = personajes.idPerso  })">Eliminar </a> </td>
+    </tr>
+        }
+    }
+</table>
