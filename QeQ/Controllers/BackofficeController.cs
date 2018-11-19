@@ -41,6 +41,7 @@ namespace QeQ.Controllers
 
         public ActionResult ABMLCategorias(string accion , int id = -1)
         {
+
             switch (accion)
             {
                 case "modif":
@@ -52,6 +53,7 @@ namespace QeQ.Controllers
                     bool afectados = BDD.EliminarCategoria(id);
                     return RedirectToAction("ListaCategorias", "Backoffice", new { a = afectados });
                 case "add":
+                    
                     return View("CatAdd");
 
             }
@@ -59,21 +61,37 @@ namespace QeQ.Controllers
             return View();
         }
               
-        public ActionResult AgregarCat(string Categoria)
+        public ActionResult AgregarCat(Categoria x)
         {
-            BDD.CrearCategoria(Categoria);
+            if (ModelState.IsValid)
+            {
+                BDD.CrearCategoria(x.cat);
             return RedirectToAction("ListaCategorias", "Backoffice");
+            }
+            else
+            {
+                return View("CatAdd");
+            }
         }
 
         public ActionResult ModificarCat()
         {
+
             return View();
         }
         [HttpPost]
         public ActionResult EditarCat(Categoria x)
         {
-            BDD.ModificarCategoria(x.IdCategoria, x.cat);
-            return RedirectToAction("ListaCategorias");
+            if (ModelState.IsValid)
+            {
+                BDD.ModificarCategoria(x.IdCategoria, x.cat);
+                return RedirectToAction("ListaCategorias");
+            }
+            else
+            {
+                return View("ModificarCat");
+            }
+
         }
 
         //-------------------------------------------------------------------------------------------------------------
@@ -101,7 +119,13 @@ namespace QeQ.Controllers
             switch (accion)
             {
                 case "modif":
-                    ViewBag.id = id;
+
+                    Personajes Perso = BDD.TraerPersonajes(id);
+                    return View("ModificarPerso", Perso);
+
+
+                    
+                   
                     return View("ModificarPerso");
                 case "elim":
                   bool afectados = BDD.EliminarPersonaje(id);
@@ -114,16 +138,37 @@ namespace QeQ.Controllers
             return View();
         }
 
-        public ActionResult AgregarPerso(string Personaje, int Categoria)
+        public ActionResult AgregarPerso(Personajes x)
         {
-            BDD.CrearPersonaje(Personaje,Categoria);
+            if (ModelState.IsValid)
+            {
+                BDD.CrearPersonaje(x.Nom,x.Cat);
             return RedirectToAction("ListaPersonajes", "Backoffice");
+            }
+            else
+            {
+                return View("PersoAdd");
+            }
         }
 
-        public ActionResult EditarPerso(int idPerso, string PersoModificado, int CategModificada)
+        /*public ActionResult EditarPerso(int idPerso, string PersoModificado, int CategModificada)
         {
             BDD.ModificarPersonaje(idPerso, PersoModificado,CategModificada);
             return RedirectToAction("ListaPersonajes");
+        }
+        */
+
+        public ActionResult EditarPerso(Personajes x)
+        {
+            if (ModelState.IsValid)
+            {
+                BDD.ModificarPersonaje(x.idPerso,x.Nom,x.Cat);
+            return RedirectToAction("ListaPersonajes");
+            }
+            else
+            {
+                return View("ModificarPerso");
+            }
         }
 
 

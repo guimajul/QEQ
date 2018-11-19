@@ -1,4 +1,7 @@
-﻿@{
+﻿@using QeQ.Models
+@model Personajes
+
+@{
     ViewBag.Title = "PersoModif";
 }
 
@@ -6,10 +9,18 @@
 
 <form action="@Url.Action("EditarPerso", "Backoffice")" method="post">
     <label style="color: black">Ingrese nuevo nombre para el personaje</label>
-    <input type="text" name="PersoModificado" /> <br />
+
+    @Html.TextBoxFor(x => x.Nom)  @Html.ValidationMessageFor(x => x.Nom)
+    @Html.HiddenFor(x => x.idPerso)
+
     <label style="color: black">Ingrese nueva categoria para el personaje</label>
-    <input type="text" name="CategModificada" /> <br />
-    <input type="hidden" name="idPerso" value="@ViewBag.id" /> <br />
+    @Html.TextBoxFor(x => x.Cat)  @Html.ValidationMessageFor(x => x.Cat)
+    @Html.HiddenFor(x => x.idPerso)
     <input type="submit" name="enviar" value="Enviar" />
 </form>
+
+
+
+
+
 

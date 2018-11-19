@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace QeQ.Models
 {
@@ -9,6 +11,7 @@ namespace QeQ.Models
     {
         private int _IdCategoria;
 
+       
         public int IdCategoria
         {
             get { return _IdCategoria; }
@@ -17,6 +20,8 @@ namespace QeQ.Models
 
         private string _Categoria;
 
+        [Required(ErrorMessage = "Es obligatorio escribir la categoria")]
+        [StringLength(maximumLength: 20, MinimumLength = 4, ErrorMessage = "La categoria debe tener entre 4 y 20")]
         public string cat
         {
             get { return _Categoria; }

@@ -39,7 +39,7 @@ namespace QeQ.Controllers
         }
         public ActionResult Registrarse()
         {
-            //Usuario us = new Usuario()
+            
 
             return View("Registrarse");
 

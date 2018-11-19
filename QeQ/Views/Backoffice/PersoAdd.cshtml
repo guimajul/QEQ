@@ -1,4 +1,5 @@
-﻿
+﻿@using QeQ.Models
+@model Personajes
 @{
     ViewBag.Title = "PersoAdd";
 }
@@ -7,9 +8,9 @@
 
 <form action="@Url.Action("AgregarPerso", "Backoffice")" method="post">
     <label style="color: black">Ingrese un nuevo personaje</label>
-    <input type="text" name="Personaje" /> <br />
+    @Html.TextBoxFor(x => x.Nom) @Html.ValidationMessageFor(x => x.Nom)
     <label style="color: black">Ingrese una categoria para ese personaje</label>
-    <input type="text" name="Categoria" /> <br />
+    @Html.TextBoxFor(x => x.Cat) @Html.ValidationMessageFor(x => x.Cat)
 
     <input type="submit" name="enviar" value="Enviar" />
 </form>

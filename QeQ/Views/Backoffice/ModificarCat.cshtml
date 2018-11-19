@@ -8,8 +8,8 @@
 
 <form action="@Url.Action("EditarCat", "Backoffice")" method="post">
     <label style="color: black">Ingrese nuevo nombre para la categoria</label>
-    @Html.TextBoxFor(x=>x.cat)
-    @Html.HiddenFor(x=>x.IdCategoria)
+    @Html.TextBoxFor(x => x.cat) @Html.ValidationMessageFor(x => x.cat)
+    @Html.HiddenFor(x => x.IdCategoria)
     <input type="submit" name="enviar" value="Enviar" />
 </form>
 

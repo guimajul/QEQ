@@ -8,9 +8,7 @@
 
 <form action="@Url.Action("AgregarCat", "Backoffice")" method="post">
     <label style="color: black">Ingrese nueva categoria</label>
-
-
-    <input type="text" name="Categoria" /> <br />
+    @Html.TextBoxFor(x => x.cat) @Html.ValidationMessageFor(x => x.cat)
     <input type="submit" name="enviar" value="Enviar" />
 </form>
 

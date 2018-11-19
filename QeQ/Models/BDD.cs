@@ -8,7 +8,7 @@ namespace QeQ.Models
 {
     public static class BDD
     {
-        private static string conexionString = "Server=10.128.8.16;Database=QEQC08;User ID=QEQC08;pwd=QEQC08;";
+        private static string conexionString = "Server=EZEQUIEL\\SQLEXPRESS;Database=QEQC08;Trusted_Connection=True;";
         private static SqlConnection Conectar()
         {
             SqlConnection conector = new SqlConnection(conexionString);
@@ -230,6 +230,33 @@ namespace QeQ.Models
             return a;
         }
 
+        public static Personajes TraerPersonajes(int idPerso)
+        {
+            Personajes Perso = new Personajes();
+
+            SqlConnection Conexión = Conectar();
+            SqlCommand Consulta = Conexión.CreateCommand();
+            Consulta.CommandText = "sp_Verpersonajes";
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.Parameters.AddWithValue("@IdPersonaje", idPerso);
+            SqlDataReader DataReader = Consulta.ExecuteReader();
+            if (DataReader.Read())
+            {
+
+
+                //IdPersonaje = idPerso;
+                //Nombre = Nom;
+                //Categoria = Cat;
+
+                
+                Perso.idPerso = Convert.ToInt32(DataReader["idPersonaje"]);
+                Perso.Nom = DataReader["Nombre"].ToString();
+                Perso.Cat = Convert.ToInt32(DataReader["Categoria"]);
+            }
+            Desconectar(Conexión);
+            return Perso;
+        }
+
         public static void ModificarPersonaje(int IdPersonaje, string Nombre, int Categoria)
         {
             SqlConnection Conexión = Conectar();
@@ -242,6 +269,8 @@ namespace QeQ.Models
             Consulta.ExecuteNonQuery();
             Desconectar(Conexión);
         }
+
+        
 
 
 
