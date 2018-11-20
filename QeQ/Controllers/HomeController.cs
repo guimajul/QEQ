@@ -65,8 +65,9 @@ namespace QeQ.Controllers
                     }
                     else
                     {
+                        ViewBag.ListasCategorias = BDD.ListarCategorias();
                         ViewBag.NombreUsuario = User.NomUs;
-                        return View("Ingreso");
+                        return View("Juego");
                     }
                 }
                 else
@@ -87,5 +88,12 @@ namespace QeQ.Controllers
             BDD.CrearUsuario(Email, Password, NombreDeUsuario);
             return View("BienvenidaRegistrarse");
         }
+        public ActionResult Juego()
+        {
+            ViewBag.ListasCategorias = BDD.ListarCategorias();
+            return View("Juego");
+        }
     }
+
+ 
 }

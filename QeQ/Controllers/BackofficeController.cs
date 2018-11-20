@@ -145,6 +145,7 @@ namespace QeQ.Controllers
             }
             else
             {
+                ViewBag.ListaCategorias = BDD.ListarCategorias();
                 return View("PersoAdd");
             }
         }
@@ -165,6 +166,7 @@ namespace QeQ.Controllers
             }
             else
             {
+                ViewBag.ListaCategorias = BDD.ListarCategorias();
                 return View("ModificarPerso");
             }
         }

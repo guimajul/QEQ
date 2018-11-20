@@ -218,6 +218,7 @@
     <Content Include="Views\BackOffice\PersoAdd.cshtml" />
     <Content Include="Views\BackOffice\ModificarCat.cshtml" />
     <Content Include="Views\BackOffice\ModificarPerso.cshtml" />
+    <Content Include="Views\Home\Juego.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
