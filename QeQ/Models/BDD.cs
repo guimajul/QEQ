@@ -8,7 +8,7 @@ namespace QeQ.Models
 {
     public static class BDD
     {
-        private static string conexionString = "Server=EZEQUIEL\\SQLEXPRESS;Database=QEQC08;Trusted_Connection=True;";
+        private static string conexionString = "Server=10.128.8.16;Database=QEQC08;User ID=QEQC08;pwd=QEQC08;";
         private static SqlConnection Conectar()
         {
             SqlConnection conector = new SqlConnection(conexionString);

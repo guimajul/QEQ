@@ -121,16 +121,14 @@ namespace QeQ.Controllers
                 case "modif":
 
                     Personajes Perso = BDD.TraerPersonajes(id);
-                    return View("ModificarPerso", Perso);
-
-
-                    
+                    ViewBag.ListaCategorias = BDD.ListarCategorias();
+                    return View("ModificarPerso", Perso);                  
                    
-                    return View("ModificarPerso");
                 case "elim":
                   bool afectados = BDD.EliminarPersonaje(id);
                     return RedirectToAction("ListaPersonajes", "Backoffice", new { a = afectados });
                 case "add":
+                    ViewBag.ListaCategorias = BDD.ListarCategorias();
                     return View("PersoAdd");
 
             }

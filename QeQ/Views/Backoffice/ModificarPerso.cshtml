@@ -14,13 +14,7 @@
     @Html.HiddenFor(x => x.idPerso)
 
     <label style="color: black">Ingrese nueva categoria para el personaje</label>
-    @Html.TextBoxFor(x => x.Cat)  @Html.ValidationMessageFor(x => x.Cat)
-    @Html.HiddenFor(x => x.idPerso)
+    @Html.DropDownListFor(x => x.Cat, new SelectList(ViewBag.ListaCategorias, "IdCategoria", "cat"))
     <input type="submit" name="enviar" value="Enviar" />
 </form>
-
-
-
-
-
 

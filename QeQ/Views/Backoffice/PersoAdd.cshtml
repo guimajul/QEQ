@@ -10,7 +10,7 @@
     <label style="color: black">Ingrese un nuevo personaje</label>
     @Html.TextBoxFor(x => x.Nom) @Html.ValidationMessageFor(x => x.Nom)
     <label style="color: black">Ingrese una categoria para ese personaje</label>
-    @Html.TextBoxFor(x => x.Cat) @Html.ValidationMessageFor(x => x.Cat)
+    @Html.DropDownListFor(x => x.Cat, new SelectList(ViewBag.ListaCategorias, "IdCategoria", "cat"))
 
     <input type="submit" name="enviar" value="Enviar" />
 </form>
