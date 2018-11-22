@@ -22,11 +22,13 @@ namespace QeQ.Models
 
         [Required(ErrorMessage = "Es obligatorio escribir la categoria")]
         [StringLength(maximumLength: 20, MinimumLength = 4, ErrorMessage = "La categoria debe tener entre 4 y 20")]
+
         public string cat
         {
             get { return _Categoria; }
             set { _Categoria = value; }
         }
+
         public Categoria(int _IdCategoria, string _Categoria)
         {
             IdCategoria = _IdCategoria;

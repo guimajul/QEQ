@@ -270,11 +270,36 @@ namespace QeQ.Models
             Desconectar(Conexión);
         }
 
-        
 
 
 
 
+        //------------------------------------------------------------------------------------------------------
 
+        public static List<Caracteristicas> ListarPreguntas()
+        {
+
+            List<Caracteristicas> ListaPreguntas = new List<Caracteristicas>();
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "TraerCaracteristicas";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            while (dataReader.Read())
+            {
+                Caracteristicas carac = new Caracteristicas();
+                carac.IdCaracteristica = Convert.ToInt32(dataReader["IdCaracteristica"]);
+                carac.Caracteristica = dataReader["Caracteristica"].ToString();
+                carac.Pregunta = dataReader["Pregunta"].ToString();
+                
+                ListaPreguntas.Add(carac);
+
+
+            }
+            Desconectar(conexion);
+            return ListaPreguntas;
+
+        }
     }
 }

@@ -19,6 +19,7 @@
         <th> IdCat </th>
         <th> Modificar </th>
         <th> Eliminar </th>
+        <th> Preguntas  </th>
     </tr>
     @{
 
@@ -29,6 +30,7 @@
         <td> @personajes.Cat </td>
         <td> <a href="@Url.Action("ABMLPersonajes","Backoffice",new { accion="modif", id = personajes.idPerso })">Modificar </a> </td>
         <td> <a href="@Url.Action("ABMLPersonajes","Backoffice",new { accion="elim", id = personajes.idPerso  })">Eliminar </a> </td>
+        <td> <a href="@Url.Action("ABMLPersonajes","Backoffice",new { accion="preg", id = personajes.idPerso  })">Preguntas </a> </td>
     </tr>
         }
     }

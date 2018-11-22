@@ -153,6 +153,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BDD.cs" />
+    <Compile Include="Models\Caracteristicas.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Personajes.cs" />
     <Compile Include="Models\Usuario.cs" />
@@ -219,6 +220,7 @@
     <Content Include="Views\BackOffice\ModificarCat.cshtml" />
     <Content Include="Views\BackOffice\ModificarPerso.cshtml" />
     <Content Include="Views\Home\Juego.cshtml" />
+    <Content Include="Views\BackOffice\CatPreg.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -55,6 +55,7 @@ namespace QeQ.Controllers
                 case "add":
                     
                     return View("CatAdd");
+                
 
             }
             
@@ -130,7 +131,9 @@ namespace QeQ.Controllers
                 case "add":
                     ViewBag.ListaCategorias = BDD.ListarCategorias();
                     return View("PersoAdd");
+                case "preg":
 
+                    return View("CatPreg");
             }
 
             return View();
