@@ -98,6 +98,7 @@ namespace QeQ.Controllers
         [HttpPost]
         public ActionResult SeleccionPersonajes(Categoria x)
         {
+        
 
             ViewBag.ListasPersonajesxCategoria = BDD.TraerPersonajesXCategoria(x.IdCategoria);
 

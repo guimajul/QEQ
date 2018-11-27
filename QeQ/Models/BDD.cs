@@ -306,6 +306,7 @@ namespace QeQ.Models
             Consulta.CommandText = "TraerPersonajesxCategorias";
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
             Consulta.Parameters.AddWithValue("@IdCategoria", x);
+            
             SqlDataReader DataReader = Consulta.ExecuteReader();
             while (DataReader.Read())
             {
