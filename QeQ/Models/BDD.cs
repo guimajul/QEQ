@@ -270,16 +270,11 @@ namespace QeQ.Models
             Desconectar(Conexión);
         }
 
-
-
-
-
         //------------------------------------------------------------------------------------------------------
-
-        public static List<Caracteristicas> ListarPreguntas()
+        public static List<Caracteristicas> ListarCaracteristica()
         {
 
-            List<Caracteristicas> ListaPreguntas = new List<Caracteristicas>();
+            List<Caracteristicas> ListarCaracteristica = new List<Caracteristicas>();
             SqlConnection conexion = Conectar();
             SqlCommand consulta = conexion.CreateCommand();
             consulta.CommandText = "TraerCaracteristicas";
@@ -292,14 +287,40 @@ namespace QeQ.Models
                 carac.IdCaracteristica = Convert.ToInt32(dataReader["IdCaracteristica"]);
                 carac.Caracteristica = dataReader["Caracteristica"].ToString();
                 carac.Pregunta = dataReader["Pregunta"].ToString();
-                
-                ListaPreguntas.Add(carac);
+
+                ListarCaracteristica.Add(carac);
 
 
             }
             Desconectar(conexion);
-            return ListaPreguntas;
+            return ListarCaracteristica;
 
         }
+        //----------------------------------------------------------------------------------------------------------------------
+        public static List<Personajes> TraerPersonajesXCategoria(int x)
+        {
+            Personajes Perso = new Personajes();
+            List<Personajes> Lista = new List<Personajes>();
+            SqlConnection Conexión = Conectar();
+            SqlCommand Consulta = Conexión.CreateCommand();
+            Consulta.CommandText = "TraerPersonajesxCategorias";
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.Parameters.AddWithValue("@IdCategoria", x);
+            SqlDataReader DataReader = Consulta.ExecuteReader();
+            while (DataReader.Read())
+            {
+                int idPerso = Convert.ToInt32(DataReader["idPersonaje"]);
+                string Nom = DataReader["Nombre"].ToString();
+                int Cat = Convert.ToInt32(DataReader["Categoria"]);
+
+                Perso = new Personajes(idPerso, Nom, Cat);
+                Lista.Add(Perso);
+            }
+            Desconectar(Conexión);
+            return Lista;
+        }
+
+
+
     }
 }

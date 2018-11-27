@@ -8,8 +8,8 @@
 
 <h2> jugador ViewBag.NombreUsuario</h2>
 
-<form action="@Url.Action("SeleccionRandom", "Home")" method="post">
+<form action="@Url.Action("SeleccionPersonajes", "Home")" method="post">
     <label style="color: black">Ingrese la categoria con la que jugará</label>
-    @Html.DropDownListFor(x => x.cat, new SelectList(ViewBag.ListasCategorias, "IdCategoria", "cat"))
+    @Html.DropDownListFor(x => x.IdCategoria, new SelectList(ViewBag.ListasCategorias, "IdCategoria", "cat"))
     <input type="submit" name="enviar" value="Enviar" />
 </form>

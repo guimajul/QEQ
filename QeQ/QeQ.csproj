@@ -204,7 +204,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\BackOffice\ABMLCategorias.cshtml" />
     <Content Include="Views\BackOffice\ABMLPersonajes.cshtml" />
-    <Content Include="Views\BackOffice\ABMLPreguntas.cshtml" />
+    <Content Include="Views\BackOffice\ABMLCaracteristica.cshtml" />
     <Content Include="Views\BackOffice\CatAdd.cshtml" />
     <Content Include="Views\BackOffice\CatElim.cshtml" />
     <Content Include="Views\BackOffice\CatModif.cshtml" />
@@ -221,6 +221,7 @@
     <Content Include="Views\BackOffice\ModificarPerso.cshtml" />
     <Content Include="Views\Home\Juego.cshtml" />
     <Content Include="Views\BackOffice\CatPreg.cshtml" />
+    <Content Include="Views\Home\SeleccionPersonajes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

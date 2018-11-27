@@ -1,0 +1,25 @@
+﻿@using QeQ.Models
+
+
+<table>
+    <tr>
+        <br />
+        <th> Nombre </th>
+        <th> IdCat </th>
+       
+    </tr>
+    @{
+
+        foreach (Personajes personajes in ViewBag.ListasPersonajesxCategoria)
+        {
+            <tr>
+                <td> @personajes.Nom </td>
+                <td> @personajes.Cat </td>
+
+            </tr>
+        }
+    }
+</table>
+
+<h2>SeleccionPersonajes</h2>
+

@@ -36,9 +36,9 @@ namespace QeQ.Models
 
         public Personajes(int idPersonaje, string Nombre, int Categoria)
         {
-            IdPersonaje = idPerso;
-            Nombre = Nom;
-            Categoria = Cat;
+            idPerso= IdPersonaje;
+            Nom = Nombre;
+            Cat = Categoria;
         }
         public Personajes()
         {

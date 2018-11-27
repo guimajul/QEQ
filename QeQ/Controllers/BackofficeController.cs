@@ -173,9 +173,52 @@ namespace QeQ.Controllers
                 return View("ModificarPerso");
             }
         }
+        //-------------------------------------------------------------------------------------------------------------
 
+        public ActionResult ListaCaracteristica (bool a = true)
+        {
+            if (Session["ADM"] != null)
+            {
+                ViewBag.ListasCaracteristica = BDD.ListarCaracteristica();
+                ViewBag.Mensaje = "ABML Caracteristica ";
+                if (a == false)
+                {
+                    ViewBag.Mensaje = "";
+                }
+                return View("ABMLCaracteristica");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
+        }
+        public ActionResult ABMLCaracteristicas(string accion, int id = -1)
+        {
+            switch (accion)
+            {
+                case "modif":
 
+                    Personajes Perso = BDD.TraerPersonajes(id);
+                    ViewBag.ListaCategorias = BDD.ListarCategorias();
+                    return View("ModificarPerso", Perso);
 
+                case "elim":
+                    bool afectados = BDD.EliminarPersonaje(id);
+                    return RedirectToAction("ListaPersonajes", "Backoffice", new { a = afectados });
+                case "add":
+                    ViewBag.ListaCategorias = BDD.ListarCategorias();
+                    return View("PersoAdd");
+                case "preg":
+
+                    return View("CatPreg");
+            }
+
+            return View();
+        }
+       
+        //-------------------------------------------------------------------------------------------------------------
+
+        
     }
 }

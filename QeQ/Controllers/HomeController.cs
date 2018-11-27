@@ -93,7 +93,17 @@ namespace QeQ.Controllers
             ViewBag.ListasCategorias = BDD.ListarCategorias();
             return View("Juego");
         }
+
+
+        [HttpPost]
+        public ActionResult SeleccionPersonajes(Categoria x)
+        {
+
+            ViewBag.ListasPersonajesxCategoria = BDD.TraerPersonajesXCategoria(x.IdCategoria);
+
+            return View();
     }
 
- 
+
+ }
 }
