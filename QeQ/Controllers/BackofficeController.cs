@@ -199,23 +199,38 @@ namespace QeQ.Controllers
             {
                 case "modif":
 
-                    Personajes Perso = BDD.TraerPersonajes(id);
-                    ViewBag.ListaCategorias = BDD.ListarCategorias();
-                    return View("ModificarPerso", Perso);
+                    Caracteristicas Carac = BDD.TraerCaracteristica(id);
+                    ViewBag.ListaCategorias = BDD.ListarCaracteristica();
+                    return View("ModificarCarac", Carac);
 
                 case "elim":
-                    bool afectados = BDD.EliminarPersonaje(id);
-                    return RedirectToAction("ListaPersonajes", "Backoffice", new { a = afectados });
+                    bool afectados = BDD.EliminarCaracteristica(id);
+                    return RedirectToAction("ListaCaracteristica", "Backoffice", new { a = afectados });
                 case "add":
-                    ViewBag.ListaCategorias = BDD.ListarCategorias();
-                    return View("PersoAdd");
-                case "preg":
-
-                    return View("CatPreg");
+                    ViewBag.ListaCaracteristicas = BDD.ListarCaracteristica();
+                    return View("CaracAdd");
             }
 
             return View();
         }
+
+        public ActionResult AgregarCarac (Caracteristicas x)
+        {
+            if (ModelState.IsValid)
+            {
+                BDD.CrearCaracteristica(x.Caracteristica, x.Pregunta);
+                return RedirectToAction("ListaCaracteristica");
+            }
+            else
+            {
+                ViewBag.ListaCaracteristica = BDD.ListarCaracteristica();
+                return View("CaracAdd");
+            }
+        }
+
+
+
+
        
         //-------------------------------------------------------------------------------------------------------------
 

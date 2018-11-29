@@ -296,6 +296,67 @@ namespace QeQ.Models
             return ListarCaracteristica;
 
         }
+
+        public static bool CrearCaracteristica(string Carac, string Pregunta)
+        {
+            bool a = false;
+            SqlConnection Conexión = Conectar();
+            SqlCommand Consulta = Conexión.CreateCommand();
+            Consulta.CommandText = "CrearCaracteristica";
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.Parameters.AddWithValue("@Caracteristica", Carac);
+            Consulta.Parameters.AddWithValue("@Pregunta", Pregunta);
+            int regsAfectados = Consulta.ExecuteNonQuery();
+            Desconectar(Conexión);
+            if (regsAfectados == 1)
+            {
+                a = true;
+            }
+            return a;
+        }
+
+        public static bool EliminarCaracteristica(int IdCarac)
+        {
+            bool a = false;
+            SqlConnection Conexión = Conectar();
+            SqlCommand Consulta = Conexión.CreateCommand();
+            Consulta.CommandText = "EliminarCaracteristica";
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.Parameters.AddWithValue("@IdCaracteristica", IdCarac);
+            int regsAfectados = Consulta.ExecuteNonQuery();
+            Desconectar(Conexión);
+            if (regsAfectados == 0)
+            {
+                a = false;
+            }
+            return a;
+        }
+
+      
+        public static Caracteristicas TraerCaracteristica(int idCarac)
+        {
+            Caracteristicas Carac = new Caracteristicas();
+
+            SqlConnection Conexión = Conectar();
+            SqlCommand Consulta = Conexión.CreateCommand();
+            Consulta.CommandText = "VerCaracteristica";
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.Parameters.AddWithValue("@IdCaracteristica", idCarac);
+            SqlDataReader DataReader = Consulta.ExecuteReader();
+            if (DataReader.Read())
+            { 
+                Carac.IdCaracteristica = Convert.ToInt32(DataReader["IdCaracteristica"]);
+                Carac.Caracteristica = DataReader["Caracteristica"].ToString();
+                Carac.Pregunta = DataReader["Pregunta"].ToString();
+            }
+            Desconectar(Conexión);
+            return Carac;
+        }
+
+
+
+
+
         //----------------------------------------------------------------------------------------------------------------------
         public static List<Personajes> TraerPersonajesXCategoria(int x)
         {

@@ -1,0 +1,15 @@
+﻿@using QeQ.Models
+@model Caracteristicas
+@{
+    ViewBag.Title = "CaracAdd";
+}
+
+<h2 style="color: black">CatAdd</h2>
+
+<form action="@Url.Action("AgregarCarac", "Backoffice")" method="post">
+    <label style="color: black">Ingrese nueva caracteristica</label>
+    @Html.TextBoxFor(x => x.Caracteristica) @Html.ValidationMessageFor(x => x.Caracteristica)
+    @Html.TextBoxFor(x => x.Pregunta) @Html.ValidationMessageFor(x => x.Pregunta)
+    <input type="submit" name="enviar" value="Enviar" />
+</form>
+

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace QeQ.Models
 {
@@ -16,11 +17,18 @@ namespace QeQ.Models
             get => _IdCaracteristica;
             set => _IdCaracteristica = value;
         }
+
+        [Required(ErrorMessage = "Es obligatorio escribir la caracteristica")]
+        [StringLength(maximumLength: 20, MinimumLength = 4, ErrorMessage = "La caracteristica debe tener entre 4 y 20 letras")]
         public string Caracteristica
         {
             get => _Caracteristica;
             set => _Caracteristica = value;
         }
+
+
+        [Required(ErrorMessage = "Es obligatorio escribir la pregunta")]
+        [StringLength(maximumLength: 30, MinimumLength = 10, ErrorMessage = "La pregunta debe tener entre 10 y 30 letras")]
         public string Pregunta
         {
             get => _Pregunta;

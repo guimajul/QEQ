@@ -9,7 +9,7 @@
 }
 
 
-<h3><a href="@Url.Action("ABMLCaracteristica","Backoffice",new { accion="add" })">Agregar Categoria</a></h3>
+<h3><a href="@Url.Action("ABMLCaracteristicas","Backoffice",new { accion="add" })">Agregar Caracteristica</a></h3>
 
 
 
@@ -27,8 +27,8 @@
             <tr>
                 <td> @Carac.Caracteristica </td>
                 <td> @Carac.Pregunta </td>
-                <td> <a href="@Url.Action("ABMLCategorias","Backoffice",new { accion="modif", id = Carac.IdCaracteristica })">Modificar </a> </td>
-                <td> <a href="@Url.Action("ABMLCategorias","Backoffice",new { accion="elim", id = Carac.IdCaracteristica  })">Eliminar </a> </td>
+                <td> <a href="@Url.Action("ABMLCaracteristicas","Backoffice",new { accion="modif", id = Carac.IdCaracteristica })">Modificar </a> </td>
+                <td> <a href="@Url.Action("ABMLCaracteristicas","Backoffice",new { accion="elim", id = Carac.IdCaracteristica  })">Eliminar </a> </td>
             </tr>
         }
     }
