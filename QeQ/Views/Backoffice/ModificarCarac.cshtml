@@ -1,7 +1,22 @@
-﻿
+﻿@using QeQ.Models
+@model Caracteristicas
 @{
-    ViewBag.Title = "ModificarCarac";
+    ViewBag.Title = "CatModif";
 }
 
-<h2>ModificarCarac</h2>
+<h2 style="color: black">CatModif</h2>
+
+<form action="@Url.Action("EditarCar", "Backoffice")" method="post">
+    <label style="color: black">Ingrese nuevo nombre para la caracteristica</label>
+    @Html.TextBoxFor(x => x.Caracteristica) @Html.ValidationMessageFor(x => x.Caracteristica)
+    @Html.HiddenFor(x => x.IdCaracteristica)
+
+
+    <label style="color: black">Ingrese nueva pregunta</label>
+    @Html.TextBoxFor(x => x.Pregunta) @Html.ValidationMessageFor(x => x.Pregunta)
+    @Html.HiddenFor(x => x.IdCaracteristica)
+
+
+    <input type="submit" name="enviar" value="Enviar" />
+</form>
 

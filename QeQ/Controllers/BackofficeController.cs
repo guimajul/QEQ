@@ -227,13 +227,30 @@ namespace QeQ.Controllers
                 return View("CaracAdd");
             }
         }
+      
+
+
+        [HttpPost]
+        public ActionResult EditarCar(Caracteristicas x)
+        {
+            if (ModelState.IsValid)
+            {
+                BDD.ModificarCaracteristica(x.IdCaracteristica, x.Caracteristica, x.Pregunta);
+                return RedirectToAction("ListaCaracteristica");
+            }
+            else
+            {
+                return View("ModificarCarac");
+            }
+
+        }
 
 
 
 
-       
+
         //-------------------------------------------------------------------------------------------------------------
 
-        
+
     }
 }

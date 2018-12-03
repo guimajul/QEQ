@@ -8,7 +8,7 @@ namespace QeQ.Models
 {
     public static class BDD
     {
-        private static string conexionString = "Server=10.128.8.16;Database=QEQC08;User ID=QEQC08;pwd=QEQC08;";
+        private static string conexionString = "Server=EZEQUIEL\\SQLEXPRESS;Database=QEQC08;Trusted_Connection=True;";
         private static SqlConnection Conectar()
         {
             SqlConnection conector = new SqlConnection(conexionString);
@@ -351,6 +351,23 @@ namespace QeQ.Models
             }
             Desconectar(Conexión);
             return Carac;
+        }
+
+
+
+
+
+        public static void ModificarCaracteristica(int IdCaracteristica, string Caracteristica, string Pregunta)
+        {
+            SqlConnection Conexión = Conectar();
+            SqlCommand Consulta = Conexión.CreateCommand();
+            Consulta.CommandText = "ModificarCaracteristica";
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.Parameters.AddWithValue("@IdCaracteristica", IdCaracteristica);
+            Consulta.Parameters.AddWithValue("@Caracteristica", Caracteristica);
+            Consulta.Parameters.AddWithValue("@Pregunta", Pregunta);
+            Consulta.ExecuteNonQuery();
+            Desconectar(Conexión);
         }
 
 

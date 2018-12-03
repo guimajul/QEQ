@@ -1,12 +1,18 @@
 ﻿@using QeQ.Models
+<h2> </h2>
+<h3 style="color: black"> Estos son todos los personajes ingresados en la base de datos sobre la tematica que vos elegiste. </h3>
+<h3 style="color: black">  Si elegiste la opcion "Todos" te traera todos los personajes ingresados en la base de datos. </h3> 
+
+
+
 
 
 <table>
     <tr>
-        <br />
+
         <th> Nombre </th>
-        <th> IdCat </th>
-       
+
+
     </tr>
     @{
 
@@ -14,7 +20,7 @@
         {
             <tr>
                 <td> @personajes.Nom </td>
-                <td> @personajes.Cat </td>
+
 
             </tr>
         }
