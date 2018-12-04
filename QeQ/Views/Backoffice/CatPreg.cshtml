@@ -1,7 +1,29 @@
-﻿
+﻿@using QeQ.Models
 @{
     ViewBag.Title = "CatPreg";
 }
 
-<h2>CatPreg</h2>
+<br />
+<br />
+
+<form action=@Url.Action("ModificarCaracteristicasXPersonaje","Backoffice") method="get">
+
+    @{
+        foreach (Caracteristicas Carac in ViewBag.ListaCaracteristicas)
+        {
+            List<int> CaractxPers = ViewBag.ListaCaracXPerso;
+            string checkeado = "";
+            if (CaractxPers.Contains(Carac.IdCaracteristica))
+            {
+                checkeado = "checked";
+            }
+            <input type="checkbox" name="Carac" value="@Carac.IdCaracteristica" @checkeado> @Carac.Caracteristica
+            <br>
+        }
+    }
+    <input type="hidden" name="IdPersonaje" value="@ViewBag.IdPersonaje"/>
+    <input type="submit" value="Guardar" />
+
+</form>
+
 

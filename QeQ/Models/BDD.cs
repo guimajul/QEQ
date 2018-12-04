@@ -8,7 +8,7 @@ namespace QeQ.Models
 {
     public static class BDD
     {
-        private static string conexionString = "Server=EZEQUIEL\\SQLEXPRESS;Database=QEQC08;Trusted_Connection=True;";
+        private static string conexionString = "Server=10.128.8.16;Database=QEQC08;User ID=QEQC08;pwd=QEQC08;";
         private static SqlConnection Conectar()
         {
             SqlConnection conector = new SqlConnection(conexionString);
@@ -397,6 +397,60 @@ namespace QeQ.Models
             }
             Desconectar(Conexión);
             return Lista;
+        }
+
+        public static List<int> TraerPersonajesXCaracteristicas(int id)
+        {
+            List<int> ListaCarac = new List<int>();
+            SqlConnection Conexión = Conectar();
+            SqlCommand Consulta = Conexión.CreateCommand();
+            Consulta.CommandText = "TraerCaracteristicasXPersonajes";
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.Parameters.AddWithValue("@IdPersonaje", id);
+
+            SqlDataReader DataReader = Consulta.ExecuteReader();
+            while (DataReader.Read())
+            {
+                int idCarac = Convert.ToInt32(DataReader["IdCaracteristica"]);
+                ListaCarac.Add(idCarac);
+            }
+            Desconectar(Conexión);
+            return ListaCarac;
+        }
+
+        public static bool EliminarCaracXPerso(int IdPerso)
+        {
+            bool a = false;
+            SqlConnection Conexión = Conectar();
+            SqlCommand Consulta = Conexión.CreateCommand();
+            Consulta.CommandText = "EliminarCaractristicaXPersonaje";
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.Parameters.AddWithValue("@IdPerso", IdPerso);
+            int regsAfectados = Consulta.ExecuteNonQuery();
+            Desconectar(Conexión);
+            if (regsAfectados == 0)
+            {
+                a = false;
+            }
+            return a;
+        }
+
+        public static bool InsertarCaracXPerso(int IdPerso, int IdCarac)
+        {
+            bool a = false;
+            SqlConnection Conexión = Conectar();
+            SqlCommand Consulta = Conexión.CreateCommand();
+            Consulta.CommandText = "InsertarCaracteristicaXPersonaje";
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.Parameters.AddWithValue("@IdPerso", IdPerso);
+            Consulta.Parameters.AddWithValue("@IdCaracteristica", IdCarac);
+            int regsAfectados = Consulta.ExecuteNonQuery();
+            Desconectar(Conexión);
+            if (regsAfectados == 1)
+            {
+                a = true;
+            }
+            return a;
         }
 
 

@@ -120,7 +120,6 @@ namespace QeQ.Controllers
             switch (accion)
             {
                 case "modif":
-
                     Personajes Perso = BDD.TraerPersonajes(id);
                     ViewBag.ListaCategorias = BDD.ListarCategorias();
                     return View("ModificarPerso", Perso);                  
@@ -132,8 +131,11 @@ namespace QeQ.Controllers
                     ViewBag.ListaCategorias = BDD.ListarCategorias();
                     return View("PersoAdd");
                 case "preg":
-
-                    return View("CatPreg");
+                    List<int> Carac = BDD.TraerPersonajesXCaracteristicas(id);
+                    ViewBag.ListaCaracXPerso = Carac;
+                    ViewBag.ListaCaracteristicas = BDD.ListarCaracteristica();
+                    ViewBag.IdPersonaje = id;
+                    return View("CatPreg");                
             }
 
             return View();
@@ -250,7 +252,18 @@ namespace QeQ.Controllers
 
 
         //-------------------------------------------------------------------------------------------------------------
+        [HttpGet]
+        public ActionResult ModificarCaracteristicasXPersonaje(int IdPersonaje, int[] Carac)
+        {
+            BDD.EliminarCaracXPerso(IdPersonaje);
+            foreach(int caracId in)
+            {
+                BDD.InsertarCaracXPerso(IdPersonaje, caracId);
 
+            }
+            return RedirectToAction("ListaPersonajes");
+
+        }
 
     }
 }
